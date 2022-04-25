@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import {
   Box,
   TextField,
@@ -8,14 +8,14 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio
-} from '@mui/material';
-import * as React from 'react';
+} from "@mui/material";
+import * as React from "react";
 
 function App() {
-  const [code, setCode] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [teacher, setTeacher] = React.useState('');
-  const [wings, setWings] = React.useState('');
+  const [code, setCode] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [teacher, setTeacher] = React.useState("");
+  const [wings, setWings] = React.useState("");
 
   const hangleWingsLetter = (event) => {
     setWings(event.target.value);
@@ -23,15 +23,11 @@ function App() {
 
   return (
     <div className="App">
-    <Box component="form">
-        <p className="Title">
-          Validate your WINGS ticket
-        </p>
+      <Box component="form">
+        <p className="Title">Validate your WINGS ticket</p>
 
-        <div className="Row" style={{'margin': 25}}>
-          <p>
-            Enter the 9 digit code on your WINGS ticket
-          </p>
+        <div className="Row" style={{ margin: 25 }}>
+          <p>Enter the 9 digit code on your WINGS ticket</p>
           <TextField
             required
             label="WINGS Ticket Code"
@@ -50,30 +46,54 @@ function App() {
             value={wings}
             onChange={hangleWingsLetter}
           >
-            <FormControlLabel value="w" control={<Radio />} label="Willing to take a risk" />
-            <FormControlLabel value="i" control={<Radio />} label="Integrity in action" />
-            <FormControlLabel value="n" control={<Radio />} label="Nobility in thought" />
-            <FormControlLabel value="g" control={<Radio />} label="Generous in spirit" />
-            <FormControlLabel value="s" control={<Radio />} label="Self-directed" />
+            <FormControlLabel
+              value="w"
+              control={<Radio />}
+              label="Willing to take a risk"
+            />
+            <FormControlLabel
+              value="i"
+              control={<Radio />}
+              label="Integrity in action"
+            />
+            <FormControlLabel
+              value="n"
+              control={<Radio />}
+              label="Nobility in thought"
+            />
+            <FormControlLabel
+              value="g"
+              control={<Radio />}
+              label="Generous in spirit"
+            />
+            <FormControlLabel
+              value="s"
+              control={<Radio />}
+              label="Self-directed"
+            />
           </RadioGroup>
         </FormControl>
 
-        <div className="Row" style={{'margin': 25}}>
-          <p>
-            Teacher
-          </p>
+        <div className="Row" style={{ margin: 25 }}>
+          <p>Teacher</p>
           <Autocomplete
-           disablePortal
-           id="teacher-select"
-           options={staff}
-           renderInput={(params) => <TextField {...params} label="Type in your teacher's name on the WINGS ticket" />}
-         />
+            disablePortal
+            id="teacher-select"
+            options={staff}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                required
+                label="Type in your teacher's name on the WINGS ticket"
+                value={teacher}
+                onChange={setTeacher}
+              />
+            )}
+          />
         </div>
 
-        <div className="Row" style={{'margin': 25}}>
-          <p>
-            Please enter your IUSD email
-          </p>
+        <div className="Row" style={{ margin: 25 }}>
+          <p>Please enter your IUSD email</p>
           <TextField
             required
             label="IUSD Email"
@@ -82,66 +102,63 @@ function App() {
             onChange={setEmail}
           />
         </div>
-
-
-
       </Box>
     </div>
   );
 }
 
 const staff = [
-  {label: 'ANGEL'},
-  {label: 'LELLIOTT'},
-  {label: 'BOSSHART'},
-  {label: 'WARE'},
-  {label: 'HALL'},
-  {label: 'VREELAND'},
-  {label: 'SURJONO'},
-  {label: 'BEEMAN'},
-  {label: 'MASCIEL'},
-  {label: 'PATTON'},
-  {label: 'ALLEN'},
-  {label: 'HOUGH'},
-  {label: 'FLEMING'},
-  {label: 'GARCIA'},
-  {label: 'HARRISON'},
-  {label: 'MELGOZA'},
-  {label: 'CLAPPER'},
-  {label: 'DI FRANCESCO'},
-  {label: 'FORD'},
-  {label: 'IGNACIO'},
-  {label: 'JONG'},
-  {label: 'TATERI'},
-  {label: 'SHIMAMOTO'},
-  {label: 'LEAVEY'},
-  {label: 'LAMPERT'},
-  {label: 'LEVENSAILOR'},
-  {label: 'PATRICK'},
-  {label: 'SOLIDAY'},
-  {label: 'PIPP'},
-  {label: 'BARCENAS'},
-  {label: 'CETINELIAN'},
-  {label: 'HONG'},
-  {label: 'PENG'},
-  {label: 'BABE'},
-  {label: 'COLLINS'},
-  {label: 'GEORGINO'},
-  {label: 'TRAPP'},
-  {label: 'KUBO'},
-  {label: 'GU'},
-  {label: 'RAU'},
-  {label: 'REYNGOLD'},
-  {label: 'MONTGOMERY'},
-  {label: 'SEILHAN'},
-  {label: 'BIRCHLER'},
-  {label: 'EISMAN'},
-  {label: 'BUTLER'},
-  {label: 'KAHELIN'},
-  {label: 'ADAMS'},
-  {label: 'MUNOZ'},
-  {label: 'BYRNE'},
-  {label: 'NGUYEN'},
-]
+  { label: "ANGEL" },
+  { label: "LELLIOTT" },
+  { label: "BOSSHART" },
+  { label: "WARE" },
+  { label: "HALL" },
+  { label: "VREELAND" },
+  { label: "SURJONO" },
+  { label: "BEEMAN" },
+  { label: "MASCIEL" },
+  { label: "PATTON" },
+  { label: "ALLEN" },
+  { label: "HOUGH" },
+  { label: "FLEMING" },
+  { label: "GARCIA" },
+  { label: "HARRISON" },
+  { label: "MELGOZA" },
+  { label: "CLAPPER" },
+  { label: "DI FRANCESCO" },
+  { label: "FORD" },
+  { label: "IGNACIO" },
+  { label: "JONG" },
+  { label: "TATERI" },
+  { label: "SHIMAMOTO" },
+  { label: "LEAVEY" },
+  { label: "LAMPERT" },
+  { label: "LEVENSAILOR" },
+  { label: "PATRICK" },
+  { label: "SOLIDAY" },
+  { label: "PIPP" },
+  { label: "BARCENAS" },
+  { label: "CETINELIAN" },
+  { label: "HONG" },
+  { label: "PENG" },
+  { label: "BABE" },
+  { label: "COLLINS" },
+  { label: "GEORGINO" },
+  { label: "TRAPP" },
+  { label: "KUBO" },
+  { label: "GU" },
+  { label: "RAU" },
+  { label: "REYNGOLD" },
+  { label: "MONTGOMERY" },
+  { label: "SEILHAN" },
+  { label: "BIRCHLER" },
+  { label: "EISMAN" },
+  { label: "BUTLER" },
+  { label: "KAHELIN" },
+  { label: "ADAMS" },
+  { label: "MUNOZ" },
+  { label: "BYRNE" },
+  { label: "NGUYEN" }
+];
 
 export default App;
