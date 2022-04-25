@@ -31,6 +31,8 @@ function App() {
     if (code !== "" && email !== "" && teacher !== "" && wings === "") {
       if (code === "111111111") {
         setResult("won");
+      } else if (code === "222222222") {
+        setResult("invalid");
       }
     }
   };
@@ -42,14 +44,27 @@ function App() {
   return (
     <div className="App">
       <Modal open={result !== ""} onClose={handleClose}>
-        <Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
+        {result === "won" ? (
+          <Box>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Congrats!
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              You had the golden ticket! Here's a gift card
+            </Typography>
+          </Box>
+        ) : (
+          <Box>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Invalid WINGS Ticket
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Your WINGS ticket code has already been claimed. If you believe
+              this was a mistake, please submit the ticket to the box outside
+              D7.
+            </Typography>
+          </Box>
+        )}
       </Modal>
 
       <Box component="form">
@@ -63,7 +78,7 @@ function App() {
             label="WINGS Ticket Code"
             defaultValue="XXX-XXX-XXX"
             value={code}
-            onChange={setCode}
+            onChange={(e) => setCode(e.target.value)}
           />
         </div>
 
@@ -110,6 +125,10 @@ function App() {
           <Autocomplete
             disablePortal
             id="teacher-select"
+            value={teacher}
+            onChange={(event, newValue) => {
+              setTeacher(newValue);
+            }}
             options={staff}
             renderInput={(params) => (
               <TextField
@@ -117,8 +136,6 @@ function App() {
                 required
                 error={submitted && teacher === ""}
                 label="Type in your teacher's name on the WINGS ticket"
-                value={teacher}
-                onChange={setTeacher}
               />
             )}
           />
@@ -132,7 +149,7 @@ function App() {
             label="IUSD Email"
             defaultValue=""
             value={email}
-            onChange={setEmail}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
