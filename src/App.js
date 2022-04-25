@@ -7,7 +7,10 @@ import {
   FormLabel,
   RadioGroup,
   FormControlLabel,
-  Radio
+  Radio,
+  Button,
+  Modal,
+  Typography
 } from "@mui/material";
 import * as React from "react";
 
@@ -16,13 +19,39 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [teacher, setTeacher] = React.useState("");
   const [wings, setWings] = React.useState("");
+  const [submitted, setSubmitted] = React.useState(false);
+  const [result, setResult] = React.useState("");
 
   const hangleWingsLetter = (event) => {
     setWings(event.target.value);
   };
 
+  const submit = () => {
+    setSubmitted(true);
+    if (code !== "" && email !== "" && teacher !== "" && wings === "") {
+      if (code === "111111111") {
+        setResult("won");
+      }
+    }
+  };
+
+  const handleClose = () => {
+    setResult("");
+  };
+
   return (
     <div className="App">
+      <Modal open={result !== ""} onClose={handleClose}>
+        <Box>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+
       <Box component="form">
         <p className="Title">Validate your WINGS ticket</p>
 
@@ -30,6 +59,7 @@ function App() {
           <p>Enter the 9 digit code on your WINGS ticket</p>
           <TextField
             required
+            error={submitted && code === ""}
             label="WINGS Ticket Code"
             defaultValue="XXX-XXX-XXX"
             value={code}
@@ -42,6 +72,7 @@ function App() {
           <RadioGroup
             aria-labelledby="wings-choice"
             defaultValue=""
+            error={submitted && code === ""}
             name="wings-choice"
             value={wings}
             onChange={hangleWingsLetter}
@@ -84,6 +115,7 @@ function App() {
               <TextField
                 {...params}
                 required
+                error={submitted && teacher === ""}
                 label="Type in your teacher's name on the WINGS ticket"
                 value={teacher}
                 onChange={setTeacher}
@@ -95,6 +127,7 @@ function App() {
         <div className="Row" style={{ margin: 25 }}>
           <p>Please enter your IUSD email</p>
           <TextField
+            error={submitted && email === ""}
             required
             label="IUSD Email"
             defaultValue=""
@@ -102,6 +135,10 @@ function App() {
             onChange={setEmail}
           />
         </div>
+
+        <Button onClick={submit} variant="contained">
+          submit
+        </Button>
       </Box>
     </div>
   );
